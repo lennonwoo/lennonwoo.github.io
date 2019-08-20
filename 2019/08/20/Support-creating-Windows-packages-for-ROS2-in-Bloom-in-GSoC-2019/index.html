@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="Support creating Windows packages for ROS2 in Bloom – Google Summer of Code (GSoC) 2019 summaryI am very fortunate to have the chance to take part in GSoC 2019. The last three months, I was working on">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Support creating Windows packages for ROS2 in Bloom – Google Summer of Code (GSoC) 2019 summary">
+<meta property="og:url" content="https://github.com/lennonwoo/lennonwoo.github.io/2019/08/20/Support-creating-Windows-packages-for-ROS2-in-Bloom-in-GSoC-2019/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Support creating Windows packages for ROS2 in Bloom – Google Summer of Code (GSoC) 2019 summaryI am very fortunate to have the chance to take part in GSoC 2019. The last three months, I was working on">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-20T13:37:07.034Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Support creating Windows packages for ROS2 in Bloom – Google Summer of Code (GSoC) 2019 summary">
+<meta name="twitter:description" content="Support creating Windows packages for ROS2 in Bloom – Google Summer of Code (GSoC) 2019 summaryI am very fortunate to have the chance to take part in GSoC 2019. The last three months, I was working on">
+  <link rel="canonical" href="https://github.com/lennonwoo/lennonwoo.github.io/2019/08/20/Support-creating-Windows-packages-for-ROS2-in-Bloom-in-GSoC-2019/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Support creating Windows packages for ROS2 in Bloom – Google Summer of Code (GSoC) 2019 summary | Hexo</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/lennonwoo/lennonwoo.github.io/2019/08/20/Support-creating-Windows-packages-for-ROS2-in-Bloom-in-GSoC-2019/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lennon Woo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Support creating Windows packages for ROS2 in Bloom – Google Summer of Code (GSoC) 2019 summary
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-08-20 21:36:24 / Modified: 21:37:07" itemprop="dateCreated datePublished" datetime="2019-08-20T21:36:24+08:00">2019-08-20</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Support-creating-Windows-packages-for-ROS2-in-Bloom-–-Google-Summer-of-Code-GSoC-2019-summary"><a href="#Support-creating-Windows-packages-for-ROS2-in-Bloom-–-Google-Summer-of-Code-GSoC-2019-summary" class="headerlink" title="Support creating Windows packages for ROS2 in Bloom – Google Summer of Code (GSoC) 2019 summary"></a>Support creating Windows packages for ROS2 in Bloom – Google Summer of Code (GSoC) 2019 summary</h1><p>I am very fortunate to have the chance to take part in GSoC 2019. The last three months, I was working on <a href="https://github.com/ros-infrastructure/bloom">Bloom</a> project in <a href="https://www.openrobotics.org/" target="_blank" rel="noopener">OSRF</a>, with my mentors: <a href="https://github.com/nuclearsandwich">Steven! Ragnarök</a> and <a href="https://github.com/cottsay">Scott K Logan</a>. I learn new knowledge everyday and used it to the project. Whenever I am confused about the project, the mentors and the community are always so friendly to help me solve the problem, thanks a lot. And the following part is my summary of this summer.</p>
+<h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Bloom is the release creation tool for the ROS ecosystem. From a standard package manifest format, bloom can generate Debian or RPM metadata for building binary packages on some Linux distributions. In order to bring support for modular binary packages Windows and possible future target platforms(mac OS or Arch Linux). The project should be carried out in three phases:</p>
+<ol>
+<li>Refactor Bloom internals to re-use distribution functionality between all distribution generators</li>
+<li>Create a proof of concept generating Vcpkg ports or Chocolatey packages for ROS 2.</li>
+<li>Integrate the proof of concept work into the refactored mainline.</li>
+</ol>
+<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><p>For Bloom’s generator refactor part, I go through the code of Debian and RPM’s generator to find out the common part and platform specific part need pay attention when refactor the code. Then I send a pull request: <a href="https://github.com/ros-infrastructure/bloom/pull/539#">Refactor generator</a>.</p>
+<p>For distribute ROS2’s modular binary packages in Windows. I research the Vcpkg and Chocolatey both, come out a solution that use Chocolatey to solve the ROS2 packages’ dependencies, then use Vcpkg to build the binary files of every ROS2 package, pack it to Chocolatey for distributing in Windows finally. Then I send a pull request:  <a href="https://github.com/ros-infrastructure/bloom/pull/541">Vcpkg support for Bloom</a>. As you can see in the pull request, I pack 240 ROS2 package to Chocolatey package format, and you can try it out from my <a href="https://github.com/lennonwoo/vcpkg/releases">release repository</a>.</p>
+<h2 id="Project-Thoughts"><a href="#Project-Thoughts" class="headerlink" title="Project Thoughts"></a>Project Thoughts</h2><p>There are some of my thoughts about this project, it may not contains too much coding details, since you can view the pull request as mentioned in the <code>Result</code> part. I wanna to discuss here about how I learn Bloom source code started from scratch, my opinion about the open source project of <code>Vcpkg</code> and <code>Chocolatey</code> used in this project, and the package packing flow.</p>
+<h3 id="The-Bloom"><a href="#The-Bloom" class="headerlink" title="The Bloom"></a>The Bloom</h3><p>I am not familiar with Bloom when I know my proposal was accepted in the early May day, but the Bloom is a project that have more than 7 years development. How to dig into it and understand the core logic of Bloom is a challenge for me. From my three months travel with Bloom can tell how to understand it more quickly:</p>
+<ol>
+<li>Understand the source code before you know how to use it, start at <a href="http://wiki.ros.org/bloom/Tutorials/FirstTimeRelease" target="_blank" rel="noopener">Bloom’s tutorials</a> is a good idea.</li>
+<li>You know how to use Bloom, so you can dig into the <a href="https://github.com/ros-infrastructure/bloom/tree/master/scripts">scripts</a> the Bloom provided now.</li>
+<li>The key of Bloom is releasing package, this release <a href="https://github.com/ros-infrastructure/bloom/blob/master/test/system_tests/test_catkin_release.py">test</a> may be helpful to understand the releasing operations</li>
+<li>You know the releasing operations well, then go through <a href="https://github.com/ros-infrastructure/bloom/tree/master/bloom/generators">generators</a> you are interested.</li>
+<li>Find the <a href="https://github.com/ros-infrastructure/bloom/issues">issues</a> you seem familiar, try to solve it to enhance you understanding of Bloom.</li>
+</ol>
+<p>On the other side, be familiar with Bloom’s dependencies is important in my experience. You’d better get the source of <a href="https://github.com/ros-infrastructure/rosdep">rosdep</a> and <a href="https://github.com/ros-infrastructure/rosdep">rosdistro</a> and install these locally if you want to add platform support for Bloom.</p>
+<h3 id="Why-Vcpkg"><a href="#Why-Vcpkg" class="headerlink" title="Why Vcpkg"></a>Why Vcpkg</h3><p>Why we choose <a href="https://github.com/microsoft/vcpkg">Vcpkg</a>? Why not the <a href="https://github.com/colcon/colcon-core">colcon</a> build tools provided from ROS?</p>
+<p>First of all, we need to be aware what part Vcpkg played in the project. We use <code>Vcpkg</code> here to:</p>
+<ol>
+<li>Download the package source code from released repository archive.</li>
+<li>Patch the source code if needed.</li>
+<li>Configure the package and built it (the configure interface should be simple)</li>
+<li>Install the binary files to certain directory for future packing.</li>
+</ol>
+<p>If you are Debian user, you know that <a href="https://github.com/Debian/debhelper">debhelper</a> could execute these job. But in Windows platform, there still not exist project <code>winhelper</code>. So we utility Vcpkg to do these job for following the Debian distribute method.</p>
+<p>For <code>colcon</code>, it is a project for building local repository (like <code>catkin</code> if you are ROS1 user), it couldn’t play the steps 1 &amp; 2 as mentioned.</p>
+<h3 id="Why-Chocolatey"><a href="#Why-Chocolatey" class="headerlink" title="Why Chocolatey"></a>Why Chocolatey</h3><p>Why use <a href="https://chocolatey.org/" target="_blank" rel="noopener">Chocolatey</a>? There are many package manager in Windows, like <a href="https://www.nuget.org/" target="_blank" rel="noopener">NuGet</a>, <a href="https://scoop.sh/" target="_blank" rel="noopener">Scoop</a>, why we don’t choose them but use <code>Chocolatey</code>?</p>
+<p>As far as I know, the <code>NuGet</code> is a package manager for distributing software library, it’s semantic version is powerful, but it lacks ability to install via <code>.exe</code> or <code>.msi</code> setup operation. </p>
+<p>For <code>Scoop</code>, it could install <code>.exe</code> or <code>.msi</code> format, also support semantic version. But compare to Chocolatey, it lack one killer feature that Chocolatey contains, which is that Chocolatey could <a href="https://chocolatey.org/docs/commandsinstall#alternative-sources" target="_blank" rel="noopener">choose source</a> when install package. Since our ROS2 package contains many python dependencies, it is very useful for port Bloom to Windows.</p>
+<h2 id="Things-need-to-improve"><a href="#Things-need-to-improve" class="headerlink" title="Things need to improve"></a>Things need to improve</h2><p>The dependencies like <code>openssl</code>, <code>python-pep8</code> that are not purely ROS2 need to improve. We can use source option in Chocolatey for install python related package dependencies, and pack other dependencies to Chocolatey package like we deal with <code>asio</code>.</p>
+<p>We may utility the cross-platform feature of Vcpkg and Chocolatey. Now we have the building and packing workflow in Windows, we could use the same logic to distribute ROS2 to other platforms like mac OS or Arch Linux in the future.</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lennon Woo</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Support-creating-Windows-packages-for-ROS2-in-Bloom-–-Google-Summer-of-Code-GSoC-2019-summary"><span class="nav-number">1.</span> <span class="nav-text">Support creating Windows packages for ROS2 in Bloom – Google Summer of Code (GSoC) 2019 summary</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Goal"><span class="nav-number">1.1.</span> <span class="nav-text">Goal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Result"><span class="nav-number">1.2.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Project-Thoughts"><span class="nav-number">1.3.</span> <span class="nav-text">Project Thoughts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Bloom"><span class="nav-number">1.3.1.</span> <span class="nav-text">The Bloom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-Vcpkg"><span class="nav-number">1.3.2.</span> <span class="nav-text">Why Vcpkg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-Chocolatey"><span class="nav-number">1.3.3.</span> <span class="nav-text">Why Chocolatey</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Things-need-to-improve"><span class="nav-number">1.4.</span> <span class="nav-text">Things need to improve</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lennon Woo</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        <span>0%</span>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/muse.js?v=7.3.0"></script>
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script><script src="/js/post-details.js?v=7.3.0"></script>
+
+
+</body>
+</html>
