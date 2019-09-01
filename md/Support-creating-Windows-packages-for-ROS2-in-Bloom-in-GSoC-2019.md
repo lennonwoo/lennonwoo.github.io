@@ -18,7 +18,7 @@ Bloom is the release creation tool for the ROS ecosystem. From a standard packag
 
 ## Result
 
-For Bloom's generator refactor part, I go through the code of Debian and RPM's generator to find out the common part and platform specific part need pay attention when refactor the code. Then I send a pull request: [Refactor generator](https://github.com/ros-infrastructure/bloom/pull/539#).
+For Bloom's generator refactor part, I went through the code of the Debian and RPM generator to find out the common part and platform specific part need pay attention when refactor the code. Then I sent a pull request: [Refactor generator](https://github.com/ros-infrastructure/bloom/pull/539#).
 
 
 
