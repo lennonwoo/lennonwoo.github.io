@@ -10,7 +10,7 @@ I am very fortunate to have the chance to take part in GSoC 2019. The last three
 
 ## Goal
 
-Bloom is the release creation tool for the ROS ecosystem. From a standard package manifest format, bloom can generate Debian or RPM metadata for building binary packages on some Linux distributions. In order to bring support for modular binary packages Windows and possible future target platforms(mac OS or Arch Linux). The project should be carried out in three phases:
+Bloom is the release creation tool for the ROS ecosystem. From a standard package manifest format, bloom can generate Debian or RPM metadata for building binary packages on some Linux distributions. In order to bring support for modular binary packages to Windows and other possible future target platforms(mac OS or Arch Linux) the generators should share more code to reduce the work required to add new ones. The project should be carried out in three phases:
 
 1. Refactor Bloom internals to re-use distribution functionality between all distribution generators
 2. Create a proof of concept generating Vcpkg ports or Chocolatey packages for ROS 2.
