@@ -6,7 +6,7 @@ tags:
 
 # Support creating Windows packages for ROS2 in Bloom – Google Summer of Code (GSoC) 2019 summary
 
-I am very fortunate to have the chance to take part in GSoC 2019. The last three months, I was working on [Bloom](https://github.com/ros-infrastructure/bloom) project in [OSRF](https://www.openrobotics.org/), with my mentors: [Steven! Ragnarök](https://github.com/nuclearsandwich) and [Scott K Logan](https://github.com/cottsay). I learn new knowledge everyday and used it to the project. Whenever I am confused about the project, the mentors and the community are always so friendly to help me solve the problem, thanks a lot. And the following part is my summary of this summer.
+I am very fortunate to have the chance to take part in GSoC 2019. The last three months, I was working on the [Bloom](https://github.com/ros-infrastructure/bloom) project in [OSRF](https://www.openrobotics.org/), with my mentors: [Steven! Ragnarök](https://github.com/nuclearsandwich) and [Scott K Logan](https://github.com/cottsay). I gained new knowledge every day and used it while contributing to the project. Whenever I am confused about the project, the mentors and the community are always so friendly to help me solve the problem, thanks a lot. The following post is my summary of this summer.
 
 ## Goal
 
